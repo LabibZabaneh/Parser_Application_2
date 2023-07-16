@@ -43,7 +43,7 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach var="row" items="${sessionScope.parsedData}" begin="1">
+    <c:forEach var="row" items="${parsedData}" begin="1">
         <tr>
             <c:forEach var="cell" items="${row}">
                 <td>${cell}</td>
@@ -55,7 +55,7 @@
 <div style="display: flex; justify-content: center; align-items: center">
     <div class="button-container">
         <label>Drop down list of the columns:</label>
-        <c:set var="columnNames" value="${sessionScope.parsedData.get(0)}" />
+        <c:set var="columnNames" value="${parsedData.get(0)}" />
         <select name="columns" id="columns">
             <c:forEach var="columnName" items="${columnNames}">
                 <option value="${columnName}">${columnName}</option>

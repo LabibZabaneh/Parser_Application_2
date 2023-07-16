@@ -57,7 +57,7 @@
 <body>
 <div class="container">
     <h2>User Login</h2>
-    <form action="login" method="post">
+    <form action="login" method="post" enctype="multipart/form-data">
         <input type="text" name="username" placeholder="Username" required><br>
         <input type="password" name="password" placeholder="Password" required><br><br>
         <input type="submit" value="Login">
