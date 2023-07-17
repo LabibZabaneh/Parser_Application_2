@@ -33,6 +33,7 @@ public class Controllers {
 
     @PostMapping("/back")
     public String goback(@RequestParam("fileName") String fileName){
+        System.out.println(fileName);
         return fileName;
     }
 

@@ -21,13 +21,6 @@ public class ParserUtility {
             Files.write(csvToParse, fileContent.getBytes(), StandardOpenOption.WRITE);
             Parser<ArrayList<Object[]>> parser = new CsvParserImpl();
             data = parser.parse(csvToParse.toString());
-
-            for (Object[] row : data) {
-                for (Object cell : row) {
-                    System.out.print(cell + " ");
-                }
-                System.out.println();
-            }
         } catch (IOException e){
             System.out.println("Error in parsing the data");
         }

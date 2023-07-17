@@ -31,7 +31,7 @@
 </head>
 <body>
 <form action="back" method="post">
-    <input type="hidden" name="fileName" value="data.jsp">
+    <input type="hidden" name="fileName" value="data">
     <button type="submit">Back</button>
 </form>
 <div class="result-box">

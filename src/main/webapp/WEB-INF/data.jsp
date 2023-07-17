@@ -88,8 +88,8 @@
             <button class="get-button" type="submit">Show History Table</button>
         </form>
     </div>
-    <form action="previous-page-url" method="post">
-        <input type="hidden" name="fileName" value="upload.jsp">
+    <form action="back" method="post">
+        <input type="hidden" name="fileName" value="upload">
         <button class="back-button" type="submit">Back</button>
     </form>
 </div>
