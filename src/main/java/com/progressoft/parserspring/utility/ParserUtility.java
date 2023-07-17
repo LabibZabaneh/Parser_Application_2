@@ -2,6 +2,7 @@ package com.progressoft.parserspring.utility;
 
 import com.progressoft.interns.advanced.parser.CsvParserImpl;
 import com.progressoft.interns.advanced.parser.Parser;
+import com.progressoft.interns.advanced.utility.ParsedDataUtilityImpl;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -26,4 +27,21 @@ public class ParserUtility {
         }
         return data;
     }
+
+    public static BigDecimal doColumnOperation(String columnName, String operation, Object data){
+        ParsedDataUtilityImpl utility = new ParsedDataUtilityImpl();
+        BigDecimal result;
+        if (operation.equals("avg")){
+            result = utility.getAverageOfColumn(data, columnName);
+        } else {
+            result = utility.getSummationOfColumn(data, columnName);
+        }
+        return result;
+    }
+
+    public static ArrayList<String> getColumnData(String columnName, Object data){
+        ParsedDataUtilityImpl utility = new ParsedDataUtilityImpl();
+        return utility.getColumnData(data, columnName);
+    }
+
 }

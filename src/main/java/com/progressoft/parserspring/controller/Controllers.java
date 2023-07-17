@@ -1,5 +1,6 @@
 package com.progressoft.parserspring.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,12 +8,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
-import static com.progressoft.parserspring.utility.ParserUtility.parseData;
+import static com.progressoft.parserspring.utility.ParserUtility.*;
 
 @Controller
 public class Controllers {
+
+    @Autowired
+    private HttpServletRequest request;
 
     @GetMapping("/")
     public String hello(){
@@ -25,21 +32,29 @@ public class Controllers {
     }
 
     @PostMapping("/upload")
-    public String processUpload(@RequestParam("file") MultipartFile file, Model model){
+    public String processUpload(@RequestParam("file") MultipartFile file) {
+        HttpSession session = request.getSession();
         ArrayList<Object[]> data = parseData(file);
-        model.addAttribute("parsedData", data);
+        session.setAttribute("parsedData",  data);
         return "data";
     }
 
     @PostMapping("/back")
     public String goback(@RequestParam("fileName") String fileName){
-        System.out.println(fileName);
         return fileName;
     }
 
     @PostMapping("/opColumn")
     public String opColumn(@RequestParam("columns") String column, Model model){
-        model.addAttribute("result" , 1);
+        HttpSession session = request.getSession();
+        Object data = session.getAttribute("parsedData");
+        if (request.getParameter("operation").equals("getData")){
+            model.addAttribute("result", getColumnData(column, data));
+            return "getDataResult";
+        }
+        BigDecimal result = doColumnOperation(column, request.getParameter("operation"), data);
+        model.addAttribute("colName", column);
+        model.addAttribute("result" , result);
         return "opResult";
     }
 }
