@@ -31,8 +31,14 @@ public class Controllers {
         return "data";
     }
 
-    @PostMapping("previous-page-url")
+    @PostMapping("/back")
     public String goback(@RequestParam("fileName") String fileName){
         return fileName;
+    }
+
+    @PostMapping("/opColumn")
+    public String opColumn(@RequestParam("columns") String column, Model model){
+        model.addAttribute("result" , 1);
+        return "opResult";
     }
 }

@@ -36,7 +36,7 @@
 <body>
 <table>
     <thead>
-    <c:set var="columnNames" value="${sessionScope.parsedData.get(0)}" />
+    <c:set var="columnNames" value="${parsedData.get(0)}" />
     <tr>
         <c:forEach var="columnName" items="${columnNames}">
             <th>${columnName}</th>
@@ -89,7 +89,7 @@
         </form>
     </div>
     <form action="previous-page-url" method="post">
-        <input type="hidden" name="fileName" value="index.jsp">
+        <input type="hidden" name="fileName" value="upload.jsp">
         <button class="back-button" type="submit">Back</button>
     </form>
 </div>
