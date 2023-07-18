@@ -1,4 +1,4 @@
-package com.progressoft.parserspring.databases;
+package com.progressoft.parserspring.database;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

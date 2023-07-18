@@ -53,9 +53,10 @@ public class Controllers {
             model.addAttribute("result", getColumnData(column, data));
             model.addAttribute("colName", column);
             return "getDataResult";
+        } else {
+            BigDecimal result = doColumnOperation(column, request.getParameter("operation"), data);
+            model.addAttribute("result", result);
+            return "opResult";
         }
-        BigDecimal result = doColumnOperation(column, request.getParameter("operation"), data);
-        model.addAttribute("result" , result);
-        return "opResult";
     }
 }
