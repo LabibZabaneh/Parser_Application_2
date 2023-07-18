@@ -32,9 +32,10 @@ public class Controllers {
     }
 
     @PostMapping("/upload")
-    public String processUpload(@RequestParam("file") MultipartFile file) {
+    public String processUpload(@RequestParam("file") MultipartFile file, Model model) {
         HttpSession session = request.getSession();
-        ArrayList<Object[]> data = parseData(file);
+        ArrayList<Object[]> data = null;
+        data = parseData(file);
         session.setAttribute("parsedData",  data);
         return "data";
     }
@@ -50,10 +51,10 @@ public class Controllers {
         Object data = session.getAttribute("parsedData");
         if (request.getParameter("operation").equals("getData")){
             model.addAttribute("result", getColumnData(column, data));
+            model.addAttribute("colName", column);
             return "getDataResult";
         }
         BigDecimal result = doColumnOperation(column, request.getParameter("operation"), data);
-        model.addAttribute("colName", column);
         model.addAttribute("result" , result);
         return "opResult";
     }

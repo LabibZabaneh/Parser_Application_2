@@ -41,8 +41,7 @@
     </style>
 </head>
 <body>
-<form action="previous-page-url" method="post">
-    <%--    <input type="hidden" name="result" value="${requestScope.result}" />--%>
+<form action="back" method="post">
     <input type="hidden" name="fileName" value="data">
     <button type="submit">Back</button>
 </form>

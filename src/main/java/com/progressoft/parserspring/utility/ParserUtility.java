@@ -1,5 +1,6 @@
 package com.progressoft.parserspring.utility;
 
+import com.progressoft.interns.advanced.exception.ParserException;
 import com.progressoft.interns.advanced.parser.CsvParserImpl;
 import com.progressoft.interns.advanced.parser.Parser;
 import com.progressoft.interns.advanced.utility.ParsedDataUtilityImpl;
@@ -14,7 +15,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
 public class ParserUtility {
-    public static ArrayList<Object[]> parseData(MultipartFile file){
+    public static ArrayList<Object[]> parseData(MultipartFile file) {
         ArrayList<Object[]> data = null;
         try {
             Path csvToParse = Files.createTempFile("csvToParse", ".csv");
