@@ -45,4 +45,16 @@ public class ParserUtility {
         return utility.getColumnData(data, columnName);
     }
 
+    public static String getFileName(MultipartFile file) {
+        String originalFilename = file.getOriginalFilename();
+        if (originalFilename != null) {
+            int extensionIndex = originalFilename.lastIndexOf(".");
+            if (extensionIndex != -1) {
+                String fileName = originalFilename.substring(0, extensionIndex);
+                String extension = originalFilename.substring(extensionIndex + 1);
+                return fileName + "." + extension;
+            }
+        }
+        return "error";
+    }
 }

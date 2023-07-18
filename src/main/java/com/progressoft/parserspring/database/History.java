@@ -9,15 +9,22 @@ import javax.persistence.Table;
 public class History {
 
     @Id
-    private Integer id;
     private String fileName;
     private String columnName;
     private Double sum;
     private Double average;
 
-    public Integer getId() {
-        return id;
+    public History(String fileName, String columnName, String operation ,Double result){
+        this.fileName = fileName;
+        this.columnName = columnName;
+        if (operation.equals("avg")){
+            this.average=result;
+        } else {
+            this.sum=result;
+        }
     }
+
+    public History() {}
 
     public String getFileName() {
         return fileName;
@@ -47,10 +54,6 @@ public class History {
         this.fileName = fileName;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public void setSum(Double sum) {
         this.sum = sum;
     }
@@ -58,7 +61,6 @@ public class History {
     @Override
     public String toString() {
         return "History{" +
-                "id=" + id +
                 ", fileName='" + fileName + '\'' +
                 ", columnName='" + columnName + '\'' +
                 ", sum=" + sum +

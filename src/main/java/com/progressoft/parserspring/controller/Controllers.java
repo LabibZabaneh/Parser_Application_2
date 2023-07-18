@@ -1,5 +1,7 @@
 package com.progressoft.parserspring.controller;
 
+import com.progressoft.parserspring.database.History;
+import com.progressoft.parserspring.repository.HistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
+import static com.progressoft.parserspring.utility.DatabaseUtility.update;
 import static com.progressoft.parserspring.utility.ParserUtility.*;
 
 @Controller
@@ -20,6 +23,8 @@ public class Controllers {
 
     @Autowired
     private HttpServletRequest request;
+    @Autowired
+    private HistoryRepository historyRepository;
 
     @GetMapping("/")
     public String hello(){
@@ -37,6 +42,7 @@ public class Controllers {
         ArrayList<Object[]> data = null;
         data = parseData(file);
         session.setAttribute("parsedData",  data);
+        session.setAttribute("fileName", getFileName(file));
         return "data";
     }
 
@@ -56,6 +62,7 @@ public class Controllers {
         } else {
             BigDecimal result = doColumnOperation(column, request.getParameter("operation"), data);
             model.addAttribute("result", result);
+            historyRepository = update(session, historyRepository, request, column, result);
             return "opResult";
         }
     }
