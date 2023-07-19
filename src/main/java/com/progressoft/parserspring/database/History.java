@@ -1,14 +1,14 @@
 package com.progressoft.parserspring.database;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="history")
 public class History {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String fileName;
     private String columnName;
     private Double sum;
@@ -25,6 +25,8 @@ public class History {
     }
 
     public History() {}
+
+    public Long getId() {return id;}
 
     public String getFileName() {
         return fileName;
@@ -56,6 +58,10 @@ public class History {
 
     public void setSum(Double sum) {
         this.sum = sum;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override

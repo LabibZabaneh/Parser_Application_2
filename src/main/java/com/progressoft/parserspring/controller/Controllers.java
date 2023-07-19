@@ -27,7 +27,7 @@ public class Controllers {
     private HistoryRepository historyRepository;
 
     @GetMapping("/")
-    public String hello(){
+    public String start(){
         return "login";
     }
 
